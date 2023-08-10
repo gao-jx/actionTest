@@ -1,3 +1,7 @@
+
+permissions:
+  contents: write
+
 name: Publish
 run-name: ${{ github.actor }} is publish 🚀
 on: 
@@ -46,10 +50,9 @@ jobs:
           draft: false
           fail_on_unmatched_files: true
           tag_name: "0.1.0"
+          token: ${{ secrets.PERSONTOKEN }}
           files: |
             readme.md
-        env:
-          GITHUB_TOKEN: ${{ secrets.PERSONTOKEN }}
           
           
           
