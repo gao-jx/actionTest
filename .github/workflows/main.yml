@@ -27,11 +27,11 @@ jobs:
 #         working-directory: ocPractice
 #         name: Install pod dependencies
 
-      - name: Build
-        env:
-          DEVELOPER_DIR: ${{ matrix.xcode-path }}
-        run: |
-          xcodebuild build -project Test/Test.xcodeproj -scheme Test -configuration Debug -derivedDataPath build
+#       - name: Build
+#         env:
+#           DEVELOPER_DIR: ${{ matrix.xcode-path }}
+#         run: |
+#           xcodebuild build -project Test/Test.xcodeproj -scheme Test -configuration Debug -derivedDataPath build
           
 #       - name: Upload Build
 #         if: ${{ success() && matrix.upload-list }}
