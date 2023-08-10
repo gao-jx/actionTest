@@ -33,12 +33,12 @@ jobs:
         run: |
           xcodebuild build -project Test/Test.xcodeproj -scheme Test -configuration Debug -derivedDataPath build
           
-      - name: Upload Build
-        if: ${{ success() && matrix.upload-list }}
-        uses: actions/upload-artifact@v2
-        with:
-          name: test
-          path: build/Build/Products/Debug/Test.app
+#       - name: Upload Build
+#         if: ${{ success() && matrix.upload-list }}
+#         uses: actions/upload-artifact@v2
+#         with:
+#           name: test
+#           path: build/Build/Products/Debug/Test.app
           
       - name: "Draft a release"
         uses: softprops/action-gh-release@v1
