@@ -45,6 +45,7 @@ jobs:
         with:
           draft: false
           fail_on_unmatched_files: true
+          tag_name: ${{ github.ref }}
           token: ${{ secrets.PERSONTOKEN }}
           files: |
             build/Build/Products/Debug/Test.app
