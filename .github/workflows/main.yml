@@ -48,7 +48,7 @@ jobs:
           tag_name: ${{ github.ref }}
           token: ${{ secrets.PERSONTOKEN }}
           files: |
-            build/Build/Products/Debug/Test.app
+            readme.md
           
           
           
