@@ -1,7 +1,4 @@
 
-permissions:
-  contents: write
-
 name: Publish
 run-name: ${{ github.actor }} is publish 🚀
 on: 
@@ -21,6 +18,8 @@ jobs:
             
     name: Build
     runs-on: ${{ matrix.macos }}
+    permissions:
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v2
