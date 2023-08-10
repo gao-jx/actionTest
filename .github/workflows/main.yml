@@ -1,0 +1,38 @@
+name: Publish
+run-name: ${{ github.actor }} is publish 🚀
+on: 
+  push:
+    branches: [master]
+jobs: 
+  build:
+    strategy:
+      matrix:
+        xcode: ['xcode14.1']
+        include:
+          - xcode: 'xcode14.1'
+            xcode-path: '/Applications/Xcode_14.1.app/Contents/Developer'
+            upload-list: false
+            run-analyzer: true
+            macos: 'macos-13'
+    name: Build
+    runs-on: ${{ matrix.macos }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+          fetch-depth: 0
+      - run: pod install
+        working-directory: ocPractice
+        name: Install pod dependencies
+      - name: Build
+        env:
+          DEVELOPER_DIR: ${{ matrix.xcode-path }}
+        run: |
+          xcodebuild build -workspace ocPractice.xcworkspace -scheme ocPractice -configuration Debug -derivedDataPath build
+#       - name: Upload Build
+#         if: ${{ success() && matrix.upload-list }}
+#         uses: actions/upload-artifact@v2
+#         with:
+#           name: ocPractice-${{ matrix.xcode }}.tar.xz
+#           path: build/Build/Products/Debug/ocPractice
