@@ -42,13 +42,14 @@ jobs:
           
       - name: "Draft a release"
         uses: softprops/action-gh-release@v1
+        if: startsWith(github.ref, 'refs/tags/')
         with:
           draft: false
           fail_on_unmatched_files: true
-          tag_name: ${{ github.ref }}
-          token: ${{ secrets.PERSONTOKEN }}
           files: |
             readme.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONTOKEN }}
           
           
           
