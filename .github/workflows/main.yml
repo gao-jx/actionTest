@@ -11,9 +11,10 @@ jobs:
         include:
           - xcode: 'xcode14.1'
             xcode-path: '/Applications/Xcode_14.1.app/Contents/Developer'
-            upload-list: false
+            upload-list: true
             run-analyzer: true
             macos: 'macos-13'
+            
     name: Build
     runs-on: ${{ matrix.macos }}
     steps:
@@ -25,14 +26,34 @@ jobs:
 #       - run: pod install
 #         working-directory: ocPractice
 #         name: Install pod dependencies
+
       - name: Build
         env:
           DEVELOPER_DIR: ${{ matrix.xcode-path }}
         run: |
           xcodebuild build -project Test/Test.xcodeproj -scheme Test -configuration Debug -derivedDataPath build
-#       - name: Upload Build
-#         if: ${{ success() && matrix.upload-list }}
-#         uses: actions/upload-artifact@v2
-#         with:
-#           name: ocPractice-${{ matrix.xcode }}.tar.xz
-#           path: build/Build/Products/Debug/ocPractice
+          
+      - name: Upload Build
+        if: ${{ success() && matrix.upload-list }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: test
+          path: build/Build/Products/Debug/Test
+          
+      - name: "Draft a release"
+        uses: softprops/action-gh-release@v1
+        with:
+          draft: false
+          target_commitish: "target_commitlish"
+          name: "release test"
+          tag_name: "0.1.0"
+          fail_on_unmatched_files: true
+          token: ${{ secrets.PERSONTOKEN }}
+          files: |
+            build/Build/Products/Debug/Test
+          
+          
+          
+          
+          
+        
