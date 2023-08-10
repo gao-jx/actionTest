@@ -38,7 +38,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: test
-          path: build/Build/Products/Debug/Test
+          path: build/Build/Products/Debug/Test.app
           
       - name: "Draft a release"
         uses: softprops/action-gh-release@v1
@@ -50,7 +50,7 @@ jobs:
           fail_on_unmatched_files: true
           token: ${{ secrets.PERSONTOKEN }}
           files: |
-            build/Build/Products/Debug/Test
+            build/Build/Products/Debug/Test.app
           
           
           
