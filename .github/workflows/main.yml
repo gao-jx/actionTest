@@ -22,14 +22,14 @@ jobs:
         with:
           submodules: true
           fetch-depth: 0
-      - run: pod install
-        working-directory: ocPractice
-        name: Install pod dependencies
+#       - run: pod install
+#         working-directory: ocPractice
+#         name: Install pod dependencies
       - name: Build
         env:
           DEVELOPER_DIR: ${{ matrix.xcode-path }}
         run: |
-          xcodebuild build -workspace ocPractice.xcworkspace -scheme ocPractice -configuration Debug -derivedDataPath build
+          xcodebuild build -project Test.xcodeproj -scheme Test -configuration Debug -derivedDataPath build
 #       - name: Upload Build
 #         if: ${{ success() && matrix.upload-list }}
 #         uses: actions/upload-artifact@v2
