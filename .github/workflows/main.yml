@@ -29,7 +29,7 @@ jobs:
         env:
           DEVELOPER_DIR: ${{ matrix.xcode-path }}
         run: |
-          xcodebuild build -project Test.xcodeproj -scheme Test -configuration Debug -derivedDataPath build
+          xcodebuild build -project Test/Test.xcodeproj -scheme Test -configuration Debug -derivedDataPath build
 #       - name: Upload Build
 #         if: ${{ success() && matrix.upload-list }}
 #         uses: actions/upload-artifact@v2
